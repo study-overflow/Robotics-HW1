@@ -18,8 +18,8 @@ Usage:
 """
 
 import numpy as np
-from math_utils import forward_kinematics, end_effector_jacobian
-from controllers import _gravity_torque, _coriolis_centrifugal
+from hw_control_platform.math_utils import forward_kinematics, end_effector_jacobian
+from hw_control_platform.controllers import _gravity_torque, _coriolis_centrifugal
 
 
 class TaskSpaceForceController:

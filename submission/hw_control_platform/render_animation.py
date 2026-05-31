@@ -9,7 +9,7 @@ import mujoco
 import numpy as np
 from scipy.interpolate import interp1d
 from PIL import Image
-from mjcf import ArmSpec, build_model_xml
+from hw_control_platform.mjcf import ArmSpec, build_model_xml
 import subprocess, shutil
 
 N_TRAIL = 80

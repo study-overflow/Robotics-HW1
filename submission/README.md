@@ -18,7 +18,7 @@ Our solution uses:
 │   ├── robot.py                 # 3-DOF planar robot (FK, IK, dynamics)
 │   ├── controller.py            # PD, CTC controllers
 │   └── trajectory_generator.py  # Circle and other trajectories
-├── mujoco_platform/             # MuJoCo platform integration
+├── hw_control_platform/             # MuJoCo platform integration
 │   ├── case1_controller.py      # Our Problem 1 controller
 │   ├── render_snapshots.py      # EGL offscreen 3D render script
 │   ├── run_case1.py             # Platform runner
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 ### Step 2: Run Our Controller
 
 ```bash
-cd mujoco_platform
+cd hw_control_platform
 python run_case1.py \
     --controller case1_controller.py \
     --lengths 0.336 0.338 0.326 \
@@ -54,7 +54,7 @@ Expected average RMS error: ~3.7 cm across all four circles.
 ### Step 3: Generate MuJoCo 3D Renders
 
 ```bash
-cd mujoco_platform
+cd hw_control_platform
 MUJOCO_GL=egl python render_snapshots.py
 ```
 
@@ -69,7 +69,7 @@ xelatex problem1_report.tex   # second pass for cross-references
 ### Step 5: Generate MuJoCo Animations (Optional)
 
 ```bash
-cd mujoco_platform
+cd hw_control_platform
 python render_animation.py
 ```
 
