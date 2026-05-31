@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .math_utils import (
+from math_utils import (
     wrap_to_pi,
     end_effector_jacobian,
     forward_kinematics,

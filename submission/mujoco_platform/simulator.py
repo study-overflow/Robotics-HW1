@@ -10,8 +10,8 @@ from typing import Callable
 
 import numpy as np
 
-from .controllers import DemoController
-from .math_utils import (
+from controllers import DemoController
+from math_utils import (
     forward_kinematics,
     link_absolute_angles,
     mujoco_xyz_to_homework_xy,
@@ -19,9 +19,9 @@ from .math_utils import (
     solve_ik_dls,
     wrap_to_pi,
 )
-from .mjcf import ArmSpec, TrailSpec, build_model_xml
-from .observations import build_observation, build_public_info
-from .tasks import CIRCLE_CASES, BLUE_LENGTHS, RED_LENGTHS, circle_reference, case2_reference
+from mjcf import ArmSpec, TrailSpec, build_model_xml
+from observations import build_observation, build_public_info
+from tasks import CIRCLE_CASES, BLUE_LENGTHS, RED_LENGTHS, circle_reference, case2_reference
 
 
 def import_controller(controller_path: str | None, default_controller, task_info: dict):
