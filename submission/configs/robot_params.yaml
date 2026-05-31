@@ -1,0 +1,21 @@
+# Robot Configuration Parameters
+
+blue_robot:
+  name: "Leader (Blue)"
+  link_lengths: [0.4, 0.35, 0.25]  # Total: 1.0m
+  link_masses: [3.33, 3.33, 3.34]   # Total: 10kg
+  color: [0.0, 0.0, 1.0]            # Blue
+  
+red_robot:
+  name: "Follower (Red)"
+  link_lengths: [0.3, 0.3, 0.4]     # Total: 1.0m (different distribution)
+  link_masses: [3.33, 3.33, 3.34]    # Total: 10kg
+  color: [1.0, 0.0, 0.0]             # Red
+
+physics:
+  gravity: 9.81  # m/s²
+  dt: 0.01       # Control timestep (10ms)
+
+joint_limits:
+  min: -3.14159  # -π rad
+  max: 3.14159    # π rad

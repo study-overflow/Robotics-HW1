@@ -1,0 +1,35 @@
+# Controller Configuration Parameters
+
+controller:
+  type: "retargeting_pd"  # Options: simple_pd, impedance, retargeting_pd
+  
+pd_gains:
+  kp: 500.0     # Proportional gain
+  kd: 50.0      # Derivative gain
+
+retargeting:
+  method: "omni"  # Options: phc, gmr, omni
+  w_position: 1.0
+  w_posture: 0.5
+  w_velocity: 0.1
+  w_acceleration: 0.05
+  
+  omni_settings:
+    window_size: 10       # Frames for multi-frame optimization
+    max_iterations: 500
+    
+  workspace_awareness:
+    enabled: true
+    boundary_margin: 0.02  # 2cm margin from workspace boundary
+
+trajectory:
+  type: "circle"  # Options: circle, figure8, random, custom
+  duration: 10.0  # seconds
+  circle:
+    center: [0.5, 0.3]
+    radius: 0.25
+    frequency: 0.5  # Hz
+
+  figure8:
+    scale: 0.15
+    frequency: 0.3

@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.zip
+*.npy
+*.npz
+*.gif
+*.mp4
+results/
+mujoco_hw_control_platform/
+paper/
+experiments/
+main.py
+submission-ready/
