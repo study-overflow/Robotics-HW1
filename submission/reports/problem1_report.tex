@@ -74,7 +74,13 @@ y = l_1\sin\theta_1 + l_2\sin\theta_2 + l_3\sin\theta_3.
 m_3 l_3\sin\theta_3
 \end{bmatrix}.
 \end{equation}
-需要指出的是，由于本问题中质量全部集中在连杆末端的理想化假设，质量矩阵的结构相对简洁——每个元素本质上是对应质心位置对关节角的偏导数的加权内积。具体而言，\(M_{ij}(\boldsymbol{q}) = \sum_{k=\max(i,j)}^{3} m_k (\partial\boldsymbol{p}_k/\partial q_i)^{\mathsf{T}}(\partial\boldsymbol{p}_k/\partial q_j)\)，其中 \(\boldsymbol{p}_k\) 为第\(k\)个质点的位置。
+需要指出的是，由于本问题中质量全部集中在连杆末端的理想化假设，质量矩阵的结构相对简洁——每个元素本质上是对应质心位置对关节角的偏导数的加权内积。具体而言，
+\begin{equation}
+M_{ij}(\boldsymbol{q}) = \sum_{k=\max(i,j)}^{3} m_k\,
+\bigl(\partial\boldsymbol{p}_k/\partial q_i\bigr)^{\mathsf{T}}
+\bigl(\partial\boldsymbol{p}_k/\partial q_j\bigr),
+\end{equation}
+其中 \(\boldsymbol{p}_k\) 为第\(k\)个质点的位置。
 
 \section{杆长优化设计}
 
