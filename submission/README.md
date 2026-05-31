@@ -66,6 +66,33 @@ xelatex problem1_report.tex
 xelatex problem1_report.tex   # second pass for cross-references
 ```
 
+### Step 5: Generate MuJoCo Animations (Optional)
+
+```bash
+cd mujoco_platform
+python render_animation.py
+```
+
+Requires `ffmpeg` for video encoding. Outputs go to `results/animations/`.
+
+## Results
+
+| Circle | Center (m) | Radius (m) | RMS Error (cm) |
+|--------|-----------|-----------|----------------|
+| 1      | (0.0, 0.0) | 0.5 | 0.172 |
+| 2      | (0.2, 0.0) | 0.8 | 0.702 |
+| 3      | (0.0, 0.3) | 0.8 | 4.376 |
+| 4      | (0.5, 0.5) | 0.5 | 9.526 |
+| **Avg** | | | **3.694** |
+
+Circles 3 and 4 extend beyond the 1m reachable workspace — the larger errors reflect physical limits, not controller limitations.
+
+## Visual Preview
+
+- `results/animations/` — MuJoCo 3D tracking videos (4 circles)
+- `results/figures/mujoco_renders/` — MuJoCo 3D snapshot grids
+- `results/figures/case1_circle_*.png` — Platform trajectory plots
+
 ## Controller Design
 
 **Architecture**: Task-Space Force Control
