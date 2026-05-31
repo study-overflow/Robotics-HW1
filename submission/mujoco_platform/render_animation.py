@@ -32,6 +32,9 @@ def build_model(lengths, masses, w=800, h=800):
     <light name="key"   pos="1.5 -2.5 2.5" dir="-0.3 0.8 -0.6" diffuse="0.9 0.9 0.95" specular="0.4 0.4 0.5"/>
     <light name="fill"  pos="-1 -1.5 1.5" dir="0.3 0.6 -0.5" diffuse="0.4 0.42 0.5" specular="0.1 0.1 0.15"/>
     <light name="ambient" pos="0 0 3" dir="0 0 -1" diffuse="0.25 0.27 0.3" castshadow="false"/>
+    <body name="target" mocap="true" pos="0 0 0">
+      <geom name="target_geom" type="sphere" size="0.025" rgba="0 0.4 1 0.7" contype="0" conaffinity="0" density="0"/>
+    </body>
   </worldbody>
 '''
     xml = xml.replace('</mujoco>', camera_xml + '\n</mujoco>')
@@ -54,16 +57,32 @@ def render_animation(csv_file, output_mp4, lengths, masses, fps=50, stride=4, w=
     data = mujoco.MjData(model)
     renderer = mujoco.Renderer(model, w, h)
 
+    # Find target mocap id (mocap index, not body id)
+    target_body_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, 'target')
+    target_mocap_id = model.body_mocapid[target_body_id]
+
+    # Homework (x,y) -> MuJoCo (x, depth, z)
+    def hw_to_mjoco(hw_xy):
+        return np.array([hw_xy[0], 0.018, hw_xy[1]])
+
     # Temporary directory for frames
     tmpdir = '/tmp/mujoco_anim_frames'
     os.makedirs(tmpdir, exist_ok=True)
 
     print(f'Rendering {n_frames//stride} frames ({n_frames} simulation steps, stride={stride})...')
 
+    target_x_col = 1  # target_x
+    target_y_col = 2  # target_y
+
     frame_idx = 0
     for t in range(0, n_frames, stride):
         q = data_csv[t, q_col:q_col+nq]
         data.qpos[:] = q
+
+        # Move target marker
+        target_xy = np.array([data_csv[t, target_x_col], data_csv[t, target_y_col]])
+        data.mocap_pos[target_mocap_id] = hw_to_mjoco(target_xy)
+
         mujoco.mj_forward(model, data)
         renderer.update_scene(data, camera='overhead')
         pixels = renderer.render()
