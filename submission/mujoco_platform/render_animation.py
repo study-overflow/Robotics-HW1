@@ -46,13 +46,13 @@ def build_model(lengths, masses, n_trail=N_TRAIL, w=640, h=640):
     head = f'''
   <visual>
     <global offwidth="{w}" offheight="{h}"/>
-    <quality shadowsize="4096" offsamples="8"/>
+    <quality shadowsize="0" offsamples="8"/>
   </visual>
   <statistic center="0.4 0 0.4" extent="1.2"/>
   <worldbody>
     <camera name="overhead" pos="0.5 -3 1.5" xyaxes="1 0 0 0 0.3 1" fovy="50"/>
-    <light name="key"   pos="1.5 -2.5 2.5" dir="-0.3 0.8 -0.6" diffuse="0.9 0.9 0.95" specular="0.4 0.4 0.5"/>
-    <light name="fill"  pos="-1 -1.5 1.5" dir="0.3 0.6 -0.5" diffuse="0.4 0.42 0.5" specular="0.1 0.1 0.15"/>
+    <light name="key"   pos="1.5 -2.5 2.5" dir="-0.3 0.8 -0.6" diffuse="0.9 0.9 0.95" specular="0.4 0.4 0.5" castshadow="false"/>
+    <light name="fill"  pos="-1 -1.5 1.5" dir="0.3 0.6 -0.5" diffuse="0.4 0.42 0.5" specular="0.1 0.1 0.15" castshadow="false"/>
     <light name="ambient" pos="0 0 3" dir="0 0 -1" diffuse="0.25 0.27 0.3" castshadow="false"/>
     {bodies}
   </worldbody>

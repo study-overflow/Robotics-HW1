@@ -21,7 +21,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 def make_model_xml(arm_specs, w=1200, h=1200):
     """Build a full MuJoCo model XML with good visuals."""
-    from hw_control_platform.mjcf import _arm_body_xml, _actuator_xml
+    from mjcf import _arm_body_xml, _actuator_xml
 
     body_xml = "\n".join(_arm_body_xml(a) for a in arm_specs)
     actuator_xml = "\n".join(_actuator_xml(a, 150.0) for a in arm_specs if a.actuated)
@@ -34,7 +34,7 @@ def make_model_xml(arm_specs, w=1200, h=1200):
     <global offwidth="{w}" offheight="{h}" azimuth="135" elevation="-35"/>
     <scale framelength="0.12" framewidth="0.006"/>
     <map stiffness="500" fogstart="5" fogend="8"/>
-    <quality shadowsize="4096" offsamples="8"/>
+    <quality shadowsize="0" offsamples="8"/>
     <rgba haze="0.08 0.1 0.15 0.15"/>
   </visual>
 
@@ -117,7 +117,7 @@ def make_grid(frames, cols=2, label_prefix=None):
 
 def render_case1(csv_dir, output_dir):
     """Problem 1: 4 circles, 6 snapshots each, with trail."""
-    from hw_control_platform.mjcf import ArmSpec
+    from mjcf import ArmSpec
 
     lengths = [0.336, 0.338, 0.326]
     masses = [3.33, 3.33, 3.34]
@@ -156,7 +156,7 @@ def render_case1(csv_dir, output_dir):
 
 def render_case2(csv_file, output_dir):
     """Problem 2: dual robots, side-by-side comparison, with highlight."""
-    from hw_control_platform.mjcf import ArmSpec
+    from mjcf import ArmSpec
 
     blue_l = [0.40, 0.40, 0.20]
     red_l = [0.35, 0.45, 0.20]
